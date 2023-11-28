@@ -1,3 +1,24 @@
+#' @title Check if data is in Qualtrics format
+#'
+#' @description
+#' This function reads a csv file according to the standard Qualtric format
+#'
+#' @param data Data attempting to be tidied
+#'
+#' @export
+
+read_qualtrics <- function(path, heuristics = FALSE) {
+  is_qualtrics(read.csv(path)) # checks to see if csv follows Qualtrics formatting
+
+  data <- read.csv(path, skip = 3, header = FALSE)
+  # saves actual data observations, excluding the first three rows of meta-data
+
+  meta_data <- read.csv(path, nrows = 1)
+  # saves meta-data as df
+
+  names(data) <- names(meta_data)
+  # apply
+}
 
 # temporarily included since we haven't put in the data yet
 data <- read.csv("~/Documents/qualtrics/data-raw/SDS270_November 17, 2023_13.49.csv", skip = 3, header = FALSE)
@@ -6,6 +27,10 @@ meta_data <- read.csv("~/Documents/qualtrics/data-raw/SDS270_November 17, 2023_1
 names(data) <- names(meta_data)
 
 data_ex <- read.csv("~/Documents/qualtrics/inst/extdata/SDS270_ex_November 27, 2023_18.19.csv")
+
+
+
+
 
 #' @title Check if data is in Qualtrics format
 #'
@@ -25,7 +50,7 @@ is_qualtrics <- function(data) {
 
   if ((data[1, 1] != "Start Date") & (!startsWith(data[2,1], '{\"ImportId\"'))) {
     # checks if first two rows of first column have expected values
-    message("Data frame does not follow Qualtrics formatting; calling function may not return intended result")
+    message("Provided csv does not follow Qualtrics formatting; calling function may not return intended result")
     # throws message if entries are not what is expected
   }
 }
