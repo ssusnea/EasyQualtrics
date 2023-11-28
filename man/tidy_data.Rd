@@ -4,10 +4,12 @@
 \alias{tidy_data}
 \title{Tidy Qualtrics data frame}
 \usage{
-tidy_data(data)
+tidy_data(data, force = FALSE)
 }
 \arguments{
 \item{data}{A data frame to be tidied}
+
+\item{force}{Logical to determine if warnings can be overruled}
 }
 \value{
 The tidied data frame and a list of all the questions as character vectors

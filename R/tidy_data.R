@@ -1,8 +1,11 @@
 
 # temporarily included since we haven't put in the data yet
-data <- read.csv("~/Desktop/SDS270_November 17, 2023_13.49.csv")
+data <- read.csv("~/Documents/qualtrics/data-raw/SDS270_November 17, 2023_13.49.csv", skip = 3, header = FALSE)
+meta_data <- read.csv("~/Documents/qualtrics/data-raw/SDS270_November 17, 2023_13.49.csv", nrows = 1)
 
-data_ex <- read.csv("~/Downloads/SDS270_ex_November 27, 2023_18.17.csv")
+names(data) <- names(meta_data)
+
+data_ex <- read.csv("~/Documents/qualtrics/inst/extdata/SDS270_ex_November 27, 2023_18.19.csv")
 
 #' @title Check if data is in Qualtrics format
 #'
@@ -27,6 +30,30 @@ is_qualtrics <- function(data) {
   }
 }
 
+
+
+#' @title Survey questions
+#'
+#' @description
+#' This function takes the first row of an unedited Qualtrics dataframe creates a new object of class
+#' `list` that contains every question in the survey in the form of character vectors.
+#'
+#' @param data A data frame to be tidied
+#'
+#' @return A list of all the survey's questions as character vectors
+#'
+#' @export
+
+get_questions <- function(data) {
+
+  is_qualtrics(data) # checks if data is in unedited Qualtrics form
+
+  questions <- as.list(data[1, ]) # creates list of survey questions
+
+  return(questions) # returns tidied data frame
+
+}
+
 #' @title Tidy Qualtrics data frame
 #'
 #' @description
@@ -36,19 +63,22 @@ is_qualtrics <- function(data) {
 #' `list` that contains every question in the survey in the form of character vectors.
 #'
 #' @param data A data frame to be tidied
+#' @param force Logical to determine if warnings can be overruled and thus data tidied anyways
 #'
-#' @return The tidied data frame and a list of all the questions as character vectors
+#' @return The tidied data frame as character vectors
 #'
 #' @export
 
-tidy_data <- function(data) {
+tidy_data <- function(data, force = FALSE) {
 
   is_qualtrics(data) # checks if data is in unedited Qualtrics form
 
-  questions <- as.list(data[1, ]) # creates list of survey questions
+  if (is_qualtrics(data) & !(force = TRUE)) {
+    # how to get R to ask if someone wants to proceed? aka make interactive condition?
+  }
+
   data <- data[-c(1, 2), ] # removes rows that are not observations
 
-  questions # returns list of questions
-  data # returns tidied data frame
+  return(data) # returns tidied data frame
 
   }
