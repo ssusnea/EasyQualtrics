@@ -2,7 +2,8 @@
 # temporarily included since we haven't put in the data yet
 data <- read.csv("~/Desktop/SDS270_November 17, 2023_13.49.csv")
 
-data_test <- read.csv("~/Downloads/SDS270_November 27, 2023_13.40 2.csv")
+data_ex <- read.csv("~/Downloads/SDS270_ex_November 27, 2023_18.17.csv")
+
 #' @title Check if data is in Qualtrics format
 #'
 #' @description
