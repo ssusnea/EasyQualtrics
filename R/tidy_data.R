@@ -3,7 +3,8 @@
 #' @description
 #' This function reads a csv file according to the standard Qualtric format
 #'
-#' @param data Data attempting to be tidied
+#' @param path File path to csv being imported
+#' @param heuristics Logical to determine if function should try identify and class likert questions
 #'
 #' @export
 
@@ -14,11 +15,26 @@ read_qualtrics <- function(path, heuristics = FALSE) {
   # saves actual data observations, excluding the first three rows of meta-data
 
   meta_data <- read.csv(path, nrows = 1)
-  # saves meta-data as df
+  # saves meta-data as data frame with first row as header
 
   names(data) <- names(meta_data)
-  # apply
+  # applies header names from meta data to be header for data set
+
+
+  data <- clean_names(data) # makes column names snake case
+
+  # adds survey question text as attr to each variable in df
+  data <- do.call(labelVector::set_label, c(list(data), lapply(meta_data, `[`, 1)))
+
+  labelVector::get_label(data[10])
+
+  data <- for (i in length(data)) {
+    labelVector::set_label(data,
+                           rlang::sym(names(data)[i]) = as.list(meta_data)[[i]]
+    )
+    }
 }
+
 
 # temporarily included since we haven't put in the data yet
 data <- read.csv("~/Documents/qualtrics/data-raw/SDS270_November 17, 2023_13.49.csv", skip = 3, header = FALSE)
@@ -27,9 +43,6 @@ meta_data <- read.csv("~/Documents/qualtrics/data-raw/SDS270_November 17, 2023_1
 names(data) <- names(meta_data)
 
 data_ex <- read.csv("~/Documents/qualtrics/inst/extdata/SDS270_ex_November 27, 2023_18.19.csv")
-
-
-
 
 
 #' @title Check if data is in Qualtrics format
