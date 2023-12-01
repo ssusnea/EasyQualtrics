@@ -29,6 +29,11 @@ read_qualtrics <- function(path, heuristics = TRUE) {
   if (heuristics) { # re-classes data frame according to Likert heuristics
     data <- make_likert(data)
   }
+
+  data <- new_qualtrics(data)
+  data <- validate_qualtrics(data)
+
+  return(data)
 }
 
 
