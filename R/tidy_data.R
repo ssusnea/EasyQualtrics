@@ -38,12 +38,12 @@ read_qualtrics <- function(path, heuristics = TRUE) {
 
 
 # temporarily included since we haven't put in the data yet
-data <- read.csv("~/Documents/qualtrics/data-raw/SDS270_November 17, 2023_13.49.csv", skip = 3, header = FALSE)
-meta_data <- read.csv("~/Documents/qualtrics/data-raw/SDS270_November 17, 2023_13.49.csv", nrows = 1)
+# data <- read.csv("~/Documents/qualtrics/data-raw/SDS270_November 17, 2023_13.49.csv", skip = 3, header = FALSE)
+# meta_data <- read.csv("~/Documents/qualtrics/data-raw/SDS270_November 17, 2023_13.49.csv", nrows = 1)
 
-names(data) <- names(meta_data)
+# names(data) <- names(meta_data)
 
-data_ex <- read.csv("~/Documents/qualtrics/inst/extdata/SDS270_ex_November 27, 2023_18.19.csv")
+# data_ex <- read.csv("~/Documents/qualtrics/inst/extdata/SDS270_ex_November 27, 2023_18.19.csv")
 
 
 #' @title Check if data frame is in unedited Qualtrics format
