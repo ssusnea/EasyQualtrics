@@ -8,7 +8,7 @@
 #'
 #' @export
 
-read_qualtrics <- function(path, heuristics = FALSE) {
+read_qualtrics <- function(path, heuristics = TRUE) {
   is_qualtrics(read.csv(path)) # checks to see if csv follows Qualtrics formatting
 
   data <- read.csv(path, skip = 3, header = FALSE)
@@ -26,13 +26,9 @@ read_qualtrics <- function(path, heuristics = FALSE) {
   # adds survey question text as attr to each variable in df
   data <- do.call(labelVector::set_label, c(list(data), lapply(meta_data, `[`, 1)))
 
-  labelVector::get_label(data[10])
-
-  data <- for (i in length(data)) {
-    labelVector::set_label(data,
-                           rlang::sym(names(data)[i]) = as.list(meta_data)[[i]]
-    )
-    }
+  if (heuristics) { # re-classes data frame according to Likert heuristics
+    data <- make_likert(data)
+  }
 }
 
 
@@ -45,7 +41,7 @@ names(data) <- names(meta_data)
 data_ex <- read.csv("~/Documents/qualtrics/inst/extdata/SDS270_ex_November 27, 2023_18.19.csv")
 
 
-#' @title Check if data is in Qualtrics format
+#' @title Check if data frame is in unedited Qualtrics format
 #'
 #' @description
 #' This function checks if the data to be tidied is in the format of unedited Qualtrics
@@ -67,56 +63,3 @@ is_qualtrics <- function(data) {
     # throws message if entries are not what is expected
   }
 }
-
-
-
-#' @title Survey questions
-#'
-#' @description
-#' This function takes the first row of an unedited Qualtrics dataframe creates a new object of class
-#' `list` that contains every question in the survey in the form of character vectors.
-#'
-#' @param data A data frame to be tidied
-#'
-#' @return A list of all the survey's questions as character vectors
-#'
-#' @export
-
-get_questions <- function(data) {
-
-  is_qualtrics(data) # checks if data is in unedited Qualtrics form
-
-  questions <- as.list(data[1, ]) # creates list of survey questions
-
-  return(questions) # returns tidied data frame
-
-}
-
-#' @title Tidy Qualtrics data frame
-#'
-#' @description
-#' This function puts data imported from Qualtrics into "tidy" format by removing
-#' the first two rows, as they do not contain actual observations. In addition,
-#' it takes the first of these unnecessary rows and creates a new object of class
-#' `list` that contains every question in the survey in the form of character vectors.
-#'
-#' @param data A data frame to be tidied
-#' @param force Logical to determine if warnings can be overruled and thus data tidied anyways
-#'
-#' @return The tidied data frame as character vectors
-#'
-#' @export
-
-tidy_data <- function(data, force = FALSE) {
-
-  is_qualtrics(data) # checks if data is in unedited Qualtrics form
-
-  if (is_qualtrics(data) & !(force = TRUE)) {
-    # how to get R to ask if someone wants to proceed? aka make interactive condition?
-  }
-
-  data <- data[-c(1, 2), ] # removes rows that are not observations
-
-  return(data) # returns tidied data frame
-
-  }

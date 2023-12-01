@@ -2,7 +2,7 @@
 % Please edit documentation in R/tidy_data.R
 \name{is_qualtrics}
 \alias{is_qualtrics}
-\title{Check if data is in Qualtrics format}
+\title{Check if data frame is in unedited Qualtrics format}
 \usage{
 is_qualtrics(data)
 }
