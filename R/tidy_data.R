@@ -8,7 +8,7 @@
 #'
 #' @export
 
-read_qualtrics <- function(path, heuristics = FALSE) {
+read_qualtrics <- function(path, heuristics = TRUE) {
   is_qualtrics(read.csv(path)) # checks to see if csv follows Qualtrics formatting
 
   data <- read.csv(path, skip = 3, header = FALSE)
@@ -26,13 +26,9 @@ read_qualtrics <- function(path, heuristics = FALSE) {
   # adds survey question text as attr to each variable in df
   data <- do.call(labelVector::set_label, c(list(data), lapply(meta_data, `[`, 1)))
 
-  labelVector::get_label(data[10])
-
-  data <- for (i in length(data)) {
-    labelVector::set_label(data,
-                           rlang::sym(names(data)[i]) = as.list(meta_data)[[i]]
-    )
-    }
+  if (heuristics) { # re-classes data frame according to Likert heuristics
+    data <- make_likert(data)
+  }
 }
 
 
@@ -45,7 +41,7 @@ names(data) <- names(meta_data)
 data_ex <- read.csv("~/Documents/qualtrics/inst/extdata/SDS270_ex_November 27, 2023_18.19.csv")
 
 
-#' @title Check if data is in Qualtrics format
+#' @title Check if data frame is in unedited Qualtrics format
 #'
 #' @description
 #' This function checks if the data to be tidied is in the format of unedited Qualtrics
