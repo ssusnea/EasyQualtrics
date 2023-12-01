@@ -4,6 +4,7 @@
 #' This function iterates over each column of class character in a data frame and
 #' compares its unique responses to Qualtrics preset Likert scale labels, called
 #' [`heuristics`]. If the responses correspond with a given heuristic, the function
+
 #' will re-lass the column as a factor with the same levels as the heuristic.
 #'
 #' @param data Data frame to iterate over in search of Likert scale responses
@@ -59,6 +60,7 @@ detect_likert <- function(col) { # looks at a single chr vector
     return(as.character(col)) # re classes col as chr and returns
   }
 
+
   if (TRUE %in% any(grepl("agree", levels(col)))) { # looks for key string (ex "agree")
     heuristics <- heuristics[1:2] # selects for heuristics with key word and assigns
     for (i in heuristics) { # iterates over new subset heuristic possibilities
@@ -68,6 +70,7 @@ detect_likert <- function(col) { # looks at a single chr vector
     }
     }
 
+
   if (TRUE %in% any(grepl("satisfied", levels(col)))) { # new key word: "satisfied"
     heuristics <- heuristics[3:4]
     for (i in heuristics) {
@@ -76,6 +79,7 @@ detect_likert <- function(col) { # looks at a single chr vector
         return(col)}
     }
   }
+
 
   if (TRUE %in% any(grepl("appropriate", levels(col)))) { # new key word: "appropriate"
     heuristics <- heuristics[5:6]
@@ -147,7 +151,7 @@ detect_likert <- function(col) { # looks at a single chr vector
         return(col)}
     }
   }
-
+  
   col <- as.character(col) # reclasses col as chr if no matching heuristic
 
   return(col) # returns col of class chr
