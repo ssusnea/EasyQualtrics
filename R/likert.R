@@ -40,7 +40,7 @@ make_likert <- function(data) { # takes the data frame being imported
 
  if (any(old_classes & !new_classes)) { # if any class changed with detect_likert()
 
-   message("Corersed following columns into Likert factors:")
+   message("Coerced following columns into Likert factors:")
    message(paste(changed_classes, "\n")) # list of columns with class changes
  }
 
@@ -72,7 +72,7 @@ detect_likert <- function(col) { # looks at a single chr vector
 
 
   if (TRUE %in% any(grepl("satisfied", levels(col)))) { # new key word: "satisfied"
-    heuristics <- heuristics[3:4]
+    heuristics <- heuristics[3:6]
     for (i in heuristics) {
       if (all((levels(col) %in% levels(i)))) {
         col <- factor(col, levels = levels(i), ordered = TRUE)
@@ -82,7 +82,7 @@ detect_likert <- function(col) { # looks at a single chr vector
 
 
   if (TRUE %in% any(grepl("appropriate", levels(col)))) { # new key word: "appropriate"
-    heuristics <- heuristics[5:6]
+    heuristics <- heuristics[7:8]
     for (i in heuristics) {
       if (all((levels(col) %in% levels(i)))) {
         col <- factor(col, levels = levels(i), ordered = TRUE)
@@ -95,15 +95,6 @@ detect_likert <- function(col) { # looks at a single chr vector
         return(col)}
 
   if (TRUE %in% any(grepl("true", levels(col)))) { # new key word: "true"
-    heuristics <- heuristics[7:9]
-    for (i in heuristics) {
-      if (all((levels(col) %in% levels(i)))) {
-        col <- factor(col, levels = levels(i), ordered = TRUE)
-        return(col)}
-    }
-  }
-
-  if ((TRUE %in% any(grepl("yes", levels(col))))) { # new key words: "yes" or "not"
     heuristics <- heuristics[10:12]
     for (i in heuristics) {
       if (all((levels(col) %in% levels(i)))) {
@@ -112,7 +103,7 @@ detect_likert <- function(col) { # looks at a single chr vector
     }
   }
 
-  if ((TRUE %in% any(grepl("average", levels(col))))) { # new key word: "average"
+  if ((TRUE %in% any(grepl("yes", levels(col))))) { # new key words: "yes" or "not"
     heuristics <- heuristics[13:15]
     for (i in heuristics) {
       if (all((levels(col) %in% levels(i)))) {
@@ -121,8 +112,17 @@ detect_likert <- function(col) { # looks at a single chr vector
     }
   }
 
+  if ((TRUE %in% any(grepl("average", levels(col))))) { # new key word: "average"
+    heuristics <- heuristics[16:18]
+    for (i in heuristics) {
+      if (all((levels(col) %in% levels(i)))) {
+        col <- factor(col, levels = levels(i), ordered = TRUE)
+        return(col)}
+    }
+  }
+
   if ((TRUE %in% any(grepl("worse", levels(col))))) { # new key word: "worse"
-    heuristics <- heuristics[16:17]
+    heuristics <- heuristics[19:20]
     for (i in heuristics) {
       if (all((levels(col) %in% levels(i)))) {
         col <- factor(col, levels = levels(i), ordered = TRUE)
@@ -131,7 +131,7 @@ detect_likert <- function(col) { # looks at a single chr vector
   }
 
   if ((TRUE %in% any(grepl("easy", levels(col))))) { # new key word: "easy"
-    heuristics <- heuristics[18:19]
+    heuristics <- heuristics[21:22]
     for (i in heuristics) {
       if (all((levels(col) %in% levels(i)))) {
         col <- factor(col, levels = levels(i), ordered = TRUE)
@@ -144,14 +144,14 @@ detect_likert <- function(col) { # looks at a single chr vector
         return(col)}
 
   if ((TRUE %in% any(grepl("good", levels(col))))) { # new key word: "good"
-    heuristics <- heuristics[21:22]
+    heuristics <- heuristics[24:25]
     for (i in heuristics) {
       if (all((levels(col) %in% levels(i)))) {
         col <- factor(col, levels = levels(i), ordered = TRUE)
         return(col)}
     }
   }
-  
+
   col <- as.character(col) # reclasses col as chr if no matching heuristic
 
   return(col) # returns col of class chr
