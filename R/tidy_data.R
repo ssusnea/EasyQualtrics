@@ -20,11 +20,14 @@ read_qualtrics <- function(path, heuristics = TRUE) {
   names(data) <- names(meta_data)
   # applies header names from meta data to be header for data set
 
+  # adds survey question text as attr to each variable in df
+  data <- do.call(labelVector::set_label, c(list(data), lapply(meta_data, `[`, 1)))
 
   data <- clean_names(data) # makes column names snake case
 
-  # adds survey question text as attr to each variable in df
-  data <- do.call(labelVector::set_label, c(list(data), lapply(meta_data, `[`, 1)))
+  if ("finished" %in% names(data)) {
+    data$finished <- as.logical(data$finished)
+  }
 
   if (heuristics) { # re-classes data frame according to Likert heuristics
     data <- make_likert(data)

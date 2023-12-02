@@ -38,6 +38,26 @@ satisfied_7 <- factor(levels = c(
   ordered = TRUE
 )
 
+satisfied_alt_5 <- factor(levels = c(
+  "Very dissatisfied",
+  "Somewhat dissatisfied",
+  "Neither satisfied nor dissatisfied",
+  "Somewhat satisfied",
+  "Very satisfied"),
+  ordered = TRUE
+)
+
+satisfied_alt_7 <- factor(levels = c(
+  "Very dissatisfied",
+  "Moderately dissatisfied",
+  "Slightly dissatisfied",
+  "Neither satisfied nor dissatisfied",
+  "Slightly satisfied",
+  "Moderately satisfied",
+  "Very satisfied"),
+  ordered = TRUE
+)
+
 appropriate_5 <- factor(levels = c(
   "Extremely inappropriate",
   "Somewhat inappropriate",
@@ -229,6 +249,8 @@ heuristics <- list(agree_5,
                    agree_7,
                    satisfied_5,
                    satisfied_7,
+                   satisfied_alt_5,
+                   satisfied_alt_7,
                    appropriate_5,
                    appropriate_7,
                    gender,
@@ -239,7 +261,6 @@ heuristics <- list(agree_5,
                    yes_no_3,
                    yes_no_4,
                    average_3,
-                   average_5,
                    average_5,
                    average_7,
                    better_worse_5,
