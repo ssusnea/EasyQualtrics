@@ -26,6 +26,8 @@ new_qualtrics <- function(data) {
 #'
 #' @return A data frame of class `qualtrics`
 #'
+#' @importFrom labelVector get_label
+#' @importFrom stringr str_detect
 #' @export
 validate_qualtrics <- function(data) {
   if (!is.data.frame(data)) {
@@ -43,5 +45,65 @@ validate_qualtrics <- function(data) {
     stop("This is not a qualtrics data frame")
   }
 
+  return(data)
+}
+
+
+
+#' Subset a `qualtrics` data frame
+#'
+#' Given an object of class `qualtrics`, this `[` subsetting method allows the user to subset a data frame while preserving its labels.
+#'
+#' @param data a data frame of class `qualtrics`
+#' @param ... additional arguments for `[`
+#'
+#' @importFrom labelVector get_label
+#' @importFrom labelVector set_label
+#'
+#' @exportS3Method
+`[.qualtrics` <- function(data, ...) {
+  labels <- labelVector::get_label(data)
+  nextMethod()
+  data <- labelVector::set_label(labels)
+  return(data)
+}
+
+
+
+#' Subset a `qualtrics` data frame
+#'
+#' Given an object of class `qualtrics`, this `[[` subsetting method allows the user to subset a data frame while preserving its labels.
+#'
+#' @param data a data frame of class `qualtrics`
+#' @param ... additional arguments for `[[`
+#'
+#' @importFrom labelVector get_label
+#' @importFrom labelVector set_label
+#'
+#' @exportS3Method
+`[[.qualtrics` <- function(data, ...) {
+labels <- labelVector::get_label(data)
+nextMethod()
+data <- labelVector::set_label(labels)
+return(data)
+}
+
+
+
+#' Subset a `qualtrics` data frame
+#'
+#' Given an object of class `qualtrics`, this `$` subsetting method allows the user to subset a data frame while preserving its labels.
+#'
+#' @param data a data frame of class `qualtrics`
+#' @param ... additional arguments for `$`
+#'
+#' @importFrom labelVector get_label
+#' @importFrom labelVector set_label
+#'
+#' @exportS3Method
+`$.qualtrics` <- function(data, ...) {
+  labels <- labelVector::get_label(data)
+  nextMethod()
+  data <- labelVector::set_label(labels)
   return(data)
 }
