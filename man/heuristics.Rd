@@ -5,7 +5,7 @@
 \alias{heuristics}
 \title{Qualtrics Likert-scale presets (re-class heuristics)}
 \format{
-An object of class \code{list} of length 24.
+An object of class \code{list} of length 25.
 }
 \usage{
 heuristics
