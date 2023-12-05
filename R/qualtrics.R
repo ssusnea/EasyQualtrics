@@ -54,18 +54,34 @@ validate_qualtrics <- function(data) {
 #'
 #' Given an object of class `qualtrics`, this `[` subsetting method allows the user to subset a data frame while preserving its labels.
 #'
+#' @rawNamespace S3method(`[`,qualtrics)
 #' @param data a data frame of class `qualtrics`
 #' @param ... additional arguments for `[`
 #'
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
 #'
-#' @exportS3Method
-`[.qualtrics` <- function(data, ...) {
-  labels <- labelVector::get_label(data)
-  nextMethod()
-  data <- labelVector::set_label(labels)
-  return(data)
+#' @note
+#' This subsetting method does not allow for dimensions to be dropped. Thus, to
+#' subset a single column of a data frame use either `$` or `[[`.
+
+`[.qualtrics` <- function(x, i, j, ..., drop = FALSE) {
+
+  class(x) <- "data.frame" # reclass as df so can use subsetting operators
+  labels <- as.list(labelVector::get_label(x)) # save the labels of the df as a list
+  names(labels) <- names(x) # save the names of the df and make them the names of the labels
+
+  newdata <- x[i, j, ..., drop = FALSE] # hard code that the method does not drop dimensions
+  # newdata <- NextMethod()
+  # if (is.data.frame(newdata)) {
+  #   labels <- labels[names(newdata)]
+  #
+  #   newdata <- do.call(labelVector::set_label, c(list(newdata), labels))
+  #   newdata <- new_qualtrics(newdata)
+  # } else {
+  #   newdata <- labelVector::set_label(newdata, labels[[i]])
+  # }
+  return(newdata)
 }
 
 
@@ -73,19 +89,23 @@ validate_qualtrics <- function(data) {
 #' Subset a `qualtrics` data frame
 #'
 #' Given an object of class `qualtrics`, this `[[` subsetting method allows the user to subset a data frame while preserving its labels.
-#'
+#' @rawNamespace S3method(`[[`,qualtrics)
 #' @param data a data frame of class `qualtrics`
 #' @param ... additional arguments for `[[`
 #'
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
-#'
-#' @exportS3Method
-`[[.qualtrics` <- function(data, ...) {
-labels <- labelVector::get_label(data)
-nextMethod()
-data <- labelVector::set_label(labels)
-return(data)
+`[[.qualtrics` <- function(x, i, j, ...) {
+
+  class(x) <- "data.frame"# reclass as df so can use subsetting operators
+  labels <- as.list(labelVector::get_label(x)) # save the labels of the df as a list
+  names(labels) <- names(x) # save the names of the df and make them the names of the labels
+
+  newdata <- NextMethod() # uses the `[[` method for data.frame
+
+  newdata <- labelVector::set_label(newdata, labels[[i]]) # sets new labels based on index
+
+  return(newdata) # returns a single labelled vector because selected for a single column
 }
 
 
@@ -94,16 +114,23 @@ return(data)
 #'
 #' Given an object of class `qualtrics`, this `$` subsetting method allows the user to subset a data frame while preserving its labels.
 #'
+#' @rawNamespace S3method(`$`,qualtrics)
 #' @param data a data frame of class `qualtrics`
 #' @param ... additional arguments for `$`
 #'
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
 #'
-#' @exportS3Method
+#'
 `$.qualtrics` <- function(data, ...) {
-  labels <- labelVector::get_label(data)
-  nextMethod()
-  data <- labelVector::set_label(labels)
-  return(data)
+
+  class(x) <- "data.frame"  # reclass as df so can use subsetting operators
+  labels <- as.list(labelVector::get_label(x)) # save the labels of the df as a list
+  names(labels) <- names(x) # save the names of the df and make them the names of the labels
+
+  newdata <- NextMethod() # uses the `[[` method for data.frame
+
+  newdata <- labelVector::set_label(newdata, labels[[i]]) # sets new labels based on index
+
+  return(newdata)  # returns a single labelled vector because selected for a single column
 }

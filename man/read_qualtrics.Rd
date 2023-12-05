@@ -2,7 +2,7 @@
 % Please edit documentation in R/tidy_data.R
 \name{read_qualtrics}
 \alias{read_qualtrics}
-\title{Check if data is in Qualtrics format}
+\title{Imports and clean Qualtrics csv data}
 \usage{
 read_qualtrics(path, heuristics = TRUE)
 }
@@ -12,5 +12,9 @@ read_qualtrics(path, heuristics = TRUE)
 \item{heuristics}{Logical to determine if function should try identify and class likert questions}
 }
 \description{
-This function reads a csv file according to the standard Qualtric format
+This function reads a csv file according to the standard Qualtric format.
+}
+\note{
+During importation, the question text is saved as a label for each column.
+To access this label use \code{\link[labelVector:get_label]{labelVector::get_label()}}.
 }
