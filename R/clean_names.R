@@ -1,7 +1,7 @@
 
 #' Standardize column names
 #'
-#' This function takes column names and tidies them, returning the names in snake case.
+#' This function takes the column names of a data frame and returns them in snake case.
 #'
 #'
 #' @param data The data frame containing the column names to be cleaned.
