@@ -11,7 +11,9 @@ A data frame of class \code{qualtrics}
 }
 \description{
 Given a object of class \code{qualtrics}, this function will check that
-the object satisfies all of the conditions necessary to be an object of class \code{qualtrics}.
+the object satisfies all of the necessary conditions to be an object of this class.
+}
+\details{
 It checks:
 \itemize{
 \item if the object is a data frame

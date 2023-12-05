@@ -4,7 +4,7 @@
 #'
 #' @param data A data set exported from Qualtrics
 #'
-#' @return An object of class `qualtrics` and `data.frame`
+#' @return An object of class `qualtrics` and class `data.frame`
 #'
 #' @export
 new_qualtrics <- function(data) {
@@ -18,7 +18,8 @@ new_qualtrics <- function(data) {
 #' Validate an object of class `qualtrics`
 #'
 #' Given a object of class `qualtrics`, this function will check that
-#' the object satisfies all of the conditions necessary to be an object of class `qualtrics`.
+#' the object satisfies all of the necessary conditions to be an object of this class.
+#'
 #' It checks:
 #' * if the object is a data frame
 #' * if the data frame has labels
@@ -52,10 +53,10 @@ validate_qualtrics <- function(data) {
 
 #' Subset a `qualtrics` data frame
 #'
-#' Given an object of class `qualtrics`, this `[` subsetting method allows the user to subset a data frame while preserving its labels.
+#' Given an object of class `qualtrics`, this subsetting method allows the user to subset a data frame while preserving its labels.
 #'
 #' @param data a data frame of class `qualtrics`
-#' @param ... additional arguments for `[`
+#' @param ... additional arguments used by `[`
 #'
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
@@ -72,10 +73,10 @@ validate_qualtrics <- function(data) {
 
 #' Subset a `qualtrics` data frame
 #'
-#' Given an object of class `qualtrics`, this `[[` subsetting method allows the user to subset a data frame while preserving its labels.
+#' Given an object of class `qualtrics`, this subsetting method allows the user to subset a data frame while preserving its labels.
 #'
 #' @param data a data frame of class `qualtrics`
-#' @param ... additional arguments for `[[`
+#' @param ... additional arguments used by `[[`
 #'
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
@@ -92,10 +93,10 @@ return(data)
 
 #' Subset a `qualtrics` data frame
 #'
-#' Given an object of class `qualtrics`, this `$` subsetting method allows the user to subset a data frame while preserving its labels.
+#' Given an object of class `qualtrics`, this subsetting method allows the user to subset a data frame while preserving its labels.
 #'
 #' @param data a data frame of class `qualtrics`
-#' @param ... additional arguments for `$`
+#' @param ... additional arguments used by `$`
 #'
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
