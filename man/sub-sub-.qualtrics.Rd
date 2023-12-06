@@ -4,13 +4,12 @@
 \alias{[[.qualtrics}
 \title{Subset a \code{qualtrics} data frame}
 \usage{
-\method{[[}{qualtrics}(data, ...)
+\method{[[}{qualtrics}(x, i, j, ...)
 }
 \arguments{
-\item{data}{a data frame of class \code{qualtrics}}
+\item{...}{additional arguments for \code{[[}}
 
-\item{...}{additional arguments used by \code{[[}}
+\item{data}{a data frame of class \code{qualtrics}}
 }
 \description{
-Given an object of class \code{qualtrics}, this subsetting method allows the user to subset a data frame while preserving its labels.
-}
+Given an object of class \code{qualtrics}, this \code{[[} subsetting method allows the user to subset a data frame while preserving its labels.}
