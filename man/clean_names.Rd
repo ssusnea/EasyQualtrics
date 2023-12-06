@@ -13,5 +13,5 @@ clean_names(data)
 a data frame with column names in snake case.
 }
 \description{
-This function takes column names and tidies them, returning the names in snake case.
+This function takes the column names of a data frame and returns them in snake case.
 }

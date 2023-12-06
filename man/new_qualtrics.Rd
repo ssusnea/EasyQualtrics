@@ -10,7 +10,7 @@ new_qualtrics(data)
 \item{data}{A data set exported from Qualtrics}
 }
 \value{
-An object of class \code{qualtrics} and \code{data.frame}
+An object of class \code{qualtrics} and class \code{data.frame}
 }
 \description{
 Given a data frame object, this function adds the class \code{qualtrics} to the object

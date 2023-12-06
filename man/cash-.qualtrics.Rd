@@ -8,9 +8,7 @@
 }
 \arguments{
 \item{data}{a data frame of class \code{qualtrics}}
-
 \item{...}{additional arguments for \code{$}}
 }
 \description{
-Given an object of class \code{qualtrics}, this \code{$} subsetting method allows the user to subset a data frame while preserving its labels.
-}
+Given an object of class \code{qualtrics}, this \code{$} subsetting method allows the user to subset a data frame while preserving its labels.}
