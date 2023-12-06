@@ -61,7 +61,7 @@ validate_qualtrics <- function(data) {
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
 #'
-#' @exportS3Method
+#' @rawNamespace S3method(`[`,qualtrics)
 `[.qualtrics` <- function(data, ...) {
   labels <- labelVector::get_label(data)
   nextMethod()
@@ -81,7 +81,7 @@ validate_qualtrics <- function(data) {
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
 #'
-#' @exportS3Method
+#' @rawNamespace S3method(`[[`,qualtrics)
 `[[.qualtrics` <- function(data, ...) {
 labels <- labelVector::get_label(data)
 nextMethod()
@@ -101,7 +101,7 @@ return(data)
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
 #'
-#' @exportS3Method
+#' @rawNamespace S3method(`$`,qualtrics)
 `$.qualtrics` <- function(data, ...) {
   labels <- labelVector::get_label(data)
   nextMethod()
