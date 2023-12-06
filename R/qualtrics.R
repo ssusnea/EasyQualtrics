@@ -61,7 +61,6 @@ validate_qualtrics <- function(data) {
 #'
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
-#'
 #' @note
 #' This subsetting method does not allow for dimensions to be dropped. Thus, to
 #' subset a single column of a data frame use either `$` or `[[`.

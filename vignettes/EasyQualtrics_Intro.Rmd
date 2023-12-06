@@ -1,0 +1,52 @@
+---
+title: "Introduction to the Easy Qualtrics Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{EasyQualtrics_Intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(EasyQualtrics)
+```
+
+# EasyQualtrics
+
+The `EasyQualtrics` package allows the user to import .csv files exported from Qualtrics into R by providing the file's path. 
+
+```{r example}
+library(EasyQualtrics)
+
+mydata <- read_qualtrics("~/Documents/EasyQualtrics/inst/extdata/qualtrics_ex_data.csv")
+# this isn't the right file path!!! or the right way to do it! but it's just for now so I can continue writing the rest of it. 
+# also this doesn't work because it's recursive???? that's what this error: "C stack usage  7973712 is too close to the limit" means.
+```
+Mention something about the likert conversion? 
+
+```{r}
+View(mydata)
+```
+
+
+Qualtrics data frames imported using the `EasyQualtrics` package are unique because of their labels attribute. This attribute provides additional context for each column so that the user does not need to guess what question a column is responding to. 
+
+The user can freely subset their Qualtrics data frame while preserving the columns' labels.
+
+```{r}
+subset_data <- mydata$column
+```
+
+They can also perform all of the usual data analysis, wrangling, and cleaning that they would on any other data set. 
+
+```{r}
+# an example of plotting very simple information from the imported data set.
+```
+
