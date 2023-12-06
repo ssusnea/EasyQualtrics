@@ -123,7 +123,7 @@ validate_qualtrics <- function(data) {
 #' @importFrom labelVector set_label
 #'
 #'
-`$.qualtrics` <- function(data, ...) {
+`$.qualtrics` <- function(x, name) {
 
   class(x) <- "data.frame"  # reclass as df so can use subsetting operators
   labels <- as.list(labelVector::get_label(x)) # save the labels of the df as a list
@@ -131,7 +131,7 @@ validate_qualtrics <- function(data) {
 
   newdata <- NextMethod() # uses the `[[` method for data.frame
 
-  newdata <- labelVector::set_label(newdata, labels[[i]]) # sets new labels based on index
+  newdata <- labelVector::set_label(newdata, labels[[name]]) # sets new labels based on index
 
   return(newdata)  # returns a single labelled vector because selected for a single column
 }
