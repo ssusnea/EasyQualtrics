@@ -22,7 +22,7 @@ library(EasyQualtrics)
 
 The `EasyQualtrics` package allows the user to import .csv files exported from Qualtrics into R by providing the file's path. 
 
-In the example below, the variable `file_path` acts as a stand in for the file path provided by the user in `read_qualtrics()`. 
+In the example below, the variable `file_path` acts as a stand in for the file path the user would provide for the function `read_qualtrics()`. 
 
 ```{r example}
 library(EasyQualtrics)
@@ -31,11 +31,11 @@ file_path <- fs::path_package("extdata", "qualtrics_ex_data.csv", package = "Eas
 
 mydata <- read_qualtrics(file_path)
 ```
-Calling `read_qualtrics()` will tidy the data frame associated with the .csv file provided by standardizing column names, removing the first two rows, assigning the appropriate class to a vector, and creating a likert class. 
+Calling `read_qualtrics()` will tidy the data frame provided by standardizing column names, removing unnecessary rows, and coercing the data frame's vectors into the appropriate classes. Most notably `read_qualtrics()` coerces certain vectors into likert vectors.
 
-It is important to note that the user should not blindly rely on `read_qualtrics()`'s likert coercion. In order for the function to coerce vectors into likert (which is effectively a factor vector ), the elements of a character vector must be identical to the default options provided by Qualtrics. Even one difference will prevent `read_qualtrics()` from coercing a character vector that the user may intend to be interpreted as a likert from being coerced as such. By default, `read_qualtrics()`'s `heuristics` argument is set to `TRUE`. To prevent automatic likert coercion, the user can set the argument to `FALSE`.  
+However the user should not blindly rely on this coercion as its success depends on the vector's elements matching Qualtric's default answer options and format. If even one element of the vector differs from Qualtric's default likert answers, `read_qualtrics()` will not coerce the vector into a likert vector. To prevent automatic likert coercion the user can set `read_qualtrics()`' `heuristics` argument to `FALSE`.
 
-function will auto search data frame for character vectors. if there are below 10 unique values it compares them to the qualtrics likert scale defaults. it will assign the column as a factor with levels. have it function as factor. mention/make note that this needs manual checking? some of it won't work because it needs to match exact qualtrics format. very dependent on matching qualtrics format. this can be opted out of by settign the argument heuristics = FALSE
+The final tidied data set is shown below. 
 
 ```{r}
 head(mydata)
@@ -43,9 +43,9 @@ head(mydata)
 
 Qualtrics data frames imported using the `EasyQualtrics` package are unique because of their labels attribute. This attribute provides additional context for each column so that the user does not need to guess what question each column responds to. 
 
-The user can freely subset their Qualtrics data frame while preserving the columns' labels. INCLUDE NOTE about subsetting changes and not dropping dimension (look at qualtrics.r for good picture). 
+The user can freely subset their Qualtrics data frame while preserving the columns' labels. However the user should note that subsetting data frames of class `qualtrics` preserves the data frame's dimension.
 
-```{r}
+```{r subsetting-examples}
 subset_data <- mydata$status
 
 subset_data2 <- mydata[, 1:4]
@@ -53,7 +53,7 @@ subset_data2 <- mydata[, 1:4]
 subset_data3 <- mydata[[2]]
 ```
 
-They can also perform all of the usual data analysis, wrangling, and cleaning that they would on any other data set. 
+Users can also perform all of the usual data analysis, wrangling, and cleaning that they would on any other data set. 
 
 ```{r}
 library(ggplot2)
@@ -63,6 +63,12 @@ mydata |>
   select(marital, race) |> 
   filter(race == "American Indian or Alaska Native" | race == "Asian" | race == "Black or African American" | race == "Native Hawaiian or Other Pacific Islander" | race == "White") |> 
   ggplot(aes(x = marital, fill = race)) +
-  geom_bar()
+  geom_bar() +
+  labs(title = "Division of Marital Status by Race", 
+       x = "Marital Status",
+       y = "Count",
+       fill = "Race") + 
+  scale_fill_brewer(palette = "Spectral") + 
+  theme_minimal()
 ```
 

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of EasyQualtrics is to enable a user to easily import .csv files exported from Qualtrics into R and prepare those data sets for analysis. 
+The goal of EasyQualtrics is to enable a user to import .csv files exported from Qualtrics into R and prepare those data sets for analysis with ease. 
 
 ## Installation
 
@@ -29,27 +29,18 @@ You can install the development version of EasyQualtrics from [GitHub](https://g
 devtools::install_github("ssusnea/EasyQualtrics")
 ```
 
-## Example
+## Importing a Qualtrics .csv
 
-This is a basic example which shows you how to solve a common problem:
+Given a file path for a .csv file, the `read_qualtrics` function imports the .csv and prepares it for data analysis and visualization. 
+
+In the example below, the `file_path` variable is a stand in for a real file path provided by the user.
 
 ```{r example}
 library(EasyQualtrics)
-## basic example code
+
+file_path <- fs::path_package("extdata", "qualtrics_ex_data.csv", package = "EasyQualtrics")
+
+mydata <- read_qualtrics(file_path)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+From there the user analyze, wrangle, or visualize their Qualtrics data as they would any other data set. 

@@ -6,9 +6,9 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of EasyQualtrics is to enable a user to easily import .csv
-files exported from Qualtrics into R and prepare those data sets for
-analysis.
+The goal of EasyQualtrics is to enable a user to import .csv files
+exported from Qualtrics into R and prepare those data sets for analysis
+with ease.
 
 ## Installation
 
@@ -20,35 +20,34 @@ You can install the development version of EasyQualtrics from
 devtools::install_github("ssusnea/EasyQualtrics")
 ```
 
-## Example
+## Importing a Qualtrics .csv
 
-This is a basic example which shows you how to solve a common problem:
+Given a file path for a .csv file, the `read_qualtrics` function imports
+the .csv and prepares it for data analysis and visualization.
+
+In the example below, the `file_path` variable is a stand in for a real
+file path provided by the user.
 
 ``` r
 library(EasyQualtrics)
-## basic example code
+
+file_path <- fs::path_package("extdata", "qualtrics_ex_data.csv", package = "EasyQualtrics")
+
+mydata <- read_qualtrics(file_path)
+#> Coerced following columns into Likert factors:
+#> csat 
+#> drivers_1 
+#> drivers_2 
+#> drivers_3 
+#> drivers_4 
+#> drivers_5 
+#> drivers_6 
+#> drivers_7 
+#> drivers_8 
+#> drivers_9 
+#> drivers_10 
+#> gender
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+From there the user analyze, wrangle, or visualize their Qualtrics data
+as they would any other data set.
