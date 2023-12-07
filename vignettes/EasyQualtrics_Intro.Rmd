@@ -50,7 +50,7 @@ subset_data <- mydata$status
 
 subset_data2 <- mydata[, 1:4]
 
-subset_data3 <- mydata[[,2]]
+subset_data3 <- mydata[[2]]
 ```
 
 They can also perform all of the usual data analysis, wrangling, and cleaning that they would on any other data set. 

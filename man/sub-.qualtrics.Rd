@@ -7,9 +7,14 @@
 \method{[}{qualtrics}(x, i, j, ..., drop = FALSE)
 }
 \arguments{
-\item{...}{additional arguments for \code{[}}
+\item{...}{additional arguments used by \code{[}}
+
 \item{data}{a data frame of class \code{qualtrics}}
 }
 \description{
 Given an object of class \code{qualtrics}, this subsetting method allows the user to subset a data frame while preserving its labels.
+}
+\note{
+This subsetting method does not allow for dimensions to be dropped. Thus, to
+subset a single column of a data frame use either \code{$} or \code{[[}.
 }
