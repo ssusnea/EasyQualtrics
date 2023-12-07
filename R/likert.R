@@ -19,6 +19,10 @@
 
 make_likert <- function(data) { # takes the data frame being imported
 
+  if (!is.data.frame(data)) {
+    stop("`data` must be of class dataframe")
+  }
+
  new_data <- purrr::modify_if(
     .x = data, # will return a data frame because using modify
     .p = is.character, # only looks at columns that are chr
