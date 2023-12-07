@@ -22,31 +22,47 @@ library(EasyQualtrics)
 
 The `EasyQualtrics` package allows the user to import .csv files exported from Qualtrics into R by providing the file's path. 
 
+In the example below, the variable `file_path` acts as a stand in for the file path provided by the user in `read_qualtrics()`. 
+
 ```{r example}
 library(EasyQualtrics)
 
-mydata <- read_qualtrics("~/Documents/EasyQualtrics/inst/extdata/qualtrics_ex_data.csv")
-# this isn't the right file path!!! or the right way to do it! but it's just for now so I can continue writing the rest of it. 
-# also this doesn't work because it's recursive???? that's what this error: "C stack usage  7973712 is too close to the limit" means.
+file_path <- fs::path_package("extdata", "qualtrics_ex_data.csv", package = "EasyQualtrics")
+
+mydata <- read_qualtrics(file_path)
 ```
-Mention something about the likert conversion? 
+Calling `read_qualtrics()` will tidy the data frame associated with the .csv file provided by standardizing column names, removing the first two rows, assigning the appropriate class to a vector, and creating a likert class. 
+
+It is important to note that the user should not blindly rely on `read_qualtrics()`'s likert coercion. In order for the function to coerce vectors into likert (which is effectively a factor vector ), the elements of a character vector must be identical to the default options provided by Qualtrics. Even one difference will prevent `read_qualtrics()` from coercing a character vector that the user may intend to be interpreted as a likert from being coerced as such. By default, `read_qualtrics()`'s `heuristics` argument is set to `TRUE`. To prevent automatic likert coercion, the user can set the argument to `FALSE`.  
+
+function will auto search data frame for character vectors. if there are below 10 unique values it compares them to the qualtrics likert scale defaults. it will assign the column as a factor with levels. have it function as factor. mention/make note that this needs manual checking? some of it won't work because it needs to match exact qualtrics format. very dependent on matching qualtrics format. this can be opted out of by settign the argument heuristics = FALSE
 
 ```{r}
-View(mydata)
+head(mydata)
 ```
 
+Qualtrics data frames imported using the `EasyQualtrics` package are unique because of their labels attribute. This attribute provides additional context for each column so that the user does not need to guess what question each column responds to. 
 
-Qualtrics data frames imported using the `EasyQualtrics` package are unique because of their labels attribute. This attribute provides additional context for each column so that the user does not need to guess what question a column is responding to. 
-
-The user can freely subset their Qualtrics data frame while preserving the columns' labels.
+The user can freely subset their Qualtrics data frame while preserving the columns' labels. INCLUDE NOTE about subsetting changes and not dropping dimension (look at qualtrics.r for good picture). 
 
 ```{r}
-subset_data <- mydata$column
+subset_data <- mydata$status
+
+subset_data2 <- mydata[, 1:4]
+
+subset_data3 <- mydata[[,2]]
 ```
 
 They can also perform all of the usual data analysis, wrangling, and cleaning that they would on any other data set. 
 
 ```{r}
-# an example of plotting very simple information from the imported data set.
+library(ggplot2)
+library(tidyverse)
+
+mydata |> 
+  select(marital, race) |> 
+  filter(race == "American Indian or Alaska Native" | race == "Asian" | race == "Black or African American" | race == "Native Hawaiian or Other Pacific Islander" | race == "White") |> 
+  ggplot(aes(x = marital, fill = race)) +
+  geom_bar()
 ```
 
