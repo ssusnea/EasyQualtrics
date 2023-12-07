@@ -71,19 +71,17 @@ validate_qualtrics <- function(data) {
   labels <- as.list(labelVector::get_label(x)) # save the labels of the df as a list
   names(labels) <- names(x) # save the names of the df and make them the names of the labels
 
+  if (missing(j)) {
+    j <- i
+    i <- 1:nrow(x)
+  }
+
   newdata <- x[i, j, ..., drop = FALSE] # hard code that the method does not drop dimensions
-  # newdata <- NextMethod()
-  # if (is.data.frame(newdata)) {
-  #   labels <- labels[names(newdata)]
-  #
-  #   newdata <- do.call(labelVector::set_label, c(list(newdata), labels))
-  #   newdata <- new_qualtrics(newdata)
-  # } else {
-  #   newdata <- labelVector::set_label(newdata, labels[[i]])
-  # }
+
+  newdata <- do.call(labelVector::set_label, c(list(newdata), labels[j]))
+
   return(newdata)
 }
-
 
 
 #' Subset a `qualtrics` data frame
@@ -96,13 +94,16 @@ validate_qualtrics <- function(data) {
 #'
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
-`[[.qualtrics` <- function(x, i, j, ...) {
+`[[.qualtrics` <- function(x, ..., exact = TRUE) {
 
   class(x) <- "data.frame"# reclass as df so can use subsetting operators
   labels <- as.list(labelVector::get_label(x)) # save the labels of the df as a list
   names(labels) <- names(x) # save the names of the df and make them the names of the labels
 
   newdata <- NextMethod() # uses the `[[` method for data.frame
+
+  index_args <- as.list(...)
+  i <- index_args[[length(index_args)]]
 
   newdata <- labelVector::set_label(newdata, labels[[i]]) # sets new labels based on index
 
