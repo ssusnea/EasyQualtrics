@@ -4,20 +4,20 @@
 #' \describe{
 #'  \item{start_date}{The date the participant started the survey}
 #'  \item{end_date}{The date the participant finished the survey}
-#'  \item{status}{???}
+#'  \item{status}{The type of response collected.}
 #'  \item{ip_address}{The IP address of a participant's device}
 #'  \item{progress}{How far the participant got into the survey}
-#'  \item{duration_in_seconds}{How many seconds it took for the participant to complete the survey?}
+#'  \item{duration_in_seconds}{How many seconds it took for the participant to complete the survey}
 #'  \item{finished}{A logical response indicating if the participant completed the survey or not}
 #'  \item{recorded_date}{The date the participant's response was recorded}
 #'  \item{resonse_id}{The unique ID assigned to each participant's response}
 #'  \item{recipient_last_name}{The last name provided by the participant}
 #'  \item{recipient_first_name}{The first name provided by the participant}
 #'  \item{recipient_email}{The email provided by the participant}
-#'  \item{external_reference}{?????}
+#'  \item{external_reference}{Generic column frequently used to collect unique identifiers like ID number}
 #'  \item{location_latitude}{The latidude where the survey response was taken}
 #'  \item{location_longitude}{The longitude where the survey response was taken}
-#'  \item{distribution_channel}{The method through which the survey was administered ?????}
+#'  \item{distribution_channel}{The method through which the survey was distributed}
 #'  \item{user_language}{The language the participant took the survey in}
 #'  \item{elig_1}{Eligibiltiy: meal delivery services used within the last 3 months}
 #'  \item{csat}{Satisfaction with product or service}
