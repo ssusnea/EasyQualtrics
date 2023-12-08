@@ -45,4 +45,4 @@
 #'  \item{zip}{Participant's zip code}
 #'  \item{q_state_zip}{Abbreviation of state associated with participant's zip code}
 #' }
-"example_data"
+"qualtrics_example"
