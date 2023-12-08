@@ -10,7 +10,7 @@
 #'  \item{duration_in_seconds}{How many seconds it took for the participant to complete the survey}
 #'  \item{finished}{A logical response indicating if the participant completed the survey or not}
 #'  \item{recorded_date}{The date the participant's response was recorded}
-#'  \item{resonse_id}{The unique ID assigned to each participant's response}
+#'  \item{response_id}{The unique ID assigned to each participant's response}
 #'  \item{recipient_last_name}{The last name provided by the participant}
 #'  \item{recipient_first_name}{The first name provided by the participant}
 #'  \item{recipient_email}{The email provided by the participant}
