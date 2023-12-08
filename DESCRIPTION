@@ -2,9 +2,9 @@ Package: EasyQualtrics
 Title: Easily Import Qualtrics .csv Files into R
 Version: 0.0.0.9000
 Authors@R: 
-    person("Claire", "Kelly", , "first.last@example.com", role = c("aut", "cre"),
+    person("Claire", "Kelly", , "ckelly@smith.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-    person("Sarah", "Susnea", , "first.last@example.com", role = c("aut", "cre"),
+    person("Sarah", "Susnea", , "ssusnea@smith.com", role = c("aut"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: This package allows a user to easily import .csv files exported from Qualtrics into R for easy data analysis.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
