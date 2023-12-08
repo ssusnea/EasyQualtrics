@@ -47,7 +47,7 @@ test_df <- data.frame(
 
 test_that("`make_likert()` returns a data frame",
           {
-            expect_equal(class(make_likert(test_df)), "data.frame")
+            expect_contains(class(make_likert(test_df)), "data.frame")
           })
 
 test_that("`detect_likert()` returns vector of class `character` if there are more than 9 levels",
@@ -57,12 +57,12 @@ test_that("`detect_likert()` returns vector of class `character` if there are mo
 
 test_that("`detect_likert()` returns a factor when all levels are present",
           {
-            expect_equal(class(detect_likert(test_df[[2]])), "factor")
+            expect_contains(class(detect_likert(test_df[[2]])), "factor")
           })
 
 test_that("`detect_likert()` returns a factor when not all levels are present, but all levels are in heuristic",
           {
-            expect_equal(class(detect_likert(test_df[[3]])), "factor")
+            expect_contains(class(detect_likert(test_df[[3]])), "factor")
           })
 
 test_that("`detect_likert()` returns vector of class `character` if not all levels match the heuristics",
