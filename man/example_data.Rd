@@ -5,7 +5,7 @@
 \alias{example_data}
 \title{Results from a sample survey downloaded from Qualtrics}
 \format{
-A data frame with 102 rows and 42 columns
+A data frame with 100 rows and 42 columns
 \describe{
 \item{start_date}{The date the participant started the survey}
 \item{end_date}{The date the participant finished the survey}
