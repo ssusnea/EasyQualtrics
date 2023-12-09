@@ -6,6 +6,9 @@
 \usage{
 validate_qualtrics(data)
 }
+\arguments{
+\item{data}{A data set exported from Qualtrics}
+}
 \value{
 A data frame of class \code{qualtrics}
 }

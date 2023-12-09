@@ -25,6 +25,8 @@ new_qualtrics <- function(data) {
 #' * if the data frame has labels
 #' * if the data frame's first two columns are named "start_date" and "end_date"
 #'
+#' @param data A data set exported from Qualtrics
+#'
 #' @return A data frame of class `qualtrics`
 #'
 #' @importFrom labelVector get_label
