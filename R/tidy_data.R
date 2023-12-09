@@ -10,6 +10,8 @@
 #' During importation, the question text is saved as a label for each column.
 #' To access this label use [`labelVector::get_label()`].
 #'
+#' @importFrom utils read.csv
+#'
 #' @export
 
 read_qualtrics <- function(path, heuristics = TRUE) {

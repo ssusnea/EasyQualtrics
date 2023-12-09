@@ -7,9 +7,15 @@
 \method{[}{qualtrics}(x, i, j, ..., drop = FALSE)
 }
 \arguments{
+\item{x}{a data frame of class \code{qualtrics}}
+
+\item{i}{typically used for row indexing}
+
+\item{j}{typically use for column indexing}
+
 \item{...}{additional arguments used by \code{[}}
 
-\item{data}{a data frame of class \code{qualtrics}}
+\item{drop}{set to default to \code{FALSE}, preserves the data frame's dimensions}
 }
 \description{
 Given an object of class \code{qualtrics}, this subsetting method allows the user to subset a data frame while preserving its labels.
