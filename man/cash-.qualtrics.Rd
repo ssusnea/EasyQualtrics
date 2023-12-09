@@ -7,9 +7,9 @@
 \method{$}{qualtrics}(x, name)
 }
 \arguments{
-\item{data}{a data frame of class \code{qualtrics}}
+\item{x}{a data frame of class \code{qualtrics}}
 
-\item{...}{additional arguments used by \code{$}}
+\item{name}{a character string used for extraction. This is matched to the names of the object to subset the desired columns}
 }
 \description{
 Given an object of class \code{qualtrics}, this subsetting method allows the user to subset a data frame while preserving its labels.

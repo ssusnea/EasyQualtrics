@@ -56,8 +56,11 @@ validate_qualtrics <- function(data) {
 #' Given an object of class `qualtrics`, this subsetting method allows the user to subset a data frame while preserving its labels.
 #'
 #' @rawNamespace S3method(`[`,qualtrics)
-#' @param data a data frame of class `qualtrics`
+#' @param x a data frame of class `qualtrics`
+#' @param i typically used for row indexing
+#' @param j typically use for column indexing
 #' @param ... additional arguments used by `[`
+#' @param drop set to default to `FALSE`, preserves the data frame's dimensions
 #'
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
@@ -89,8 +92,9 @@ validate_qualtrics <- function(data) {
 #' @rawNamespace S3method(`[[`,qualtrics)
 #' @description Given an object of class `qualtrics`, this subsetting method allows the user to subset a data frame while preserving its labels.
 #'
-#' @param data a data frame of class `qualtrics`
+#' @param x a data frame of class `qualtrics`
 #' @param ... additional arguments used by `[[`
+#' @param exact set to default to `TRUE`, controls possible partial matching when extracting by a character vector
 #'
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label
@@ -117,8 +121,8 @@ validate_qualtrics <- function(data) {
 #' Given an object of class `qualtrics`, this subsetting method allows the user to subset a data frame while preserving its labels.
 #'
 #' @rawNamespace S3method(`$`,qualtrics)
-#' @param data a data frame of class `qualtrics`
-#' @param ... additional arguments used by `$`
+#' @param x a data frame of class `qualtrics`
+#' @param name a character string used for extraction. This is matched to the names of the object to subset the desired columns
 #'
 #' @importFrom labelVector get_label
 #' @importFrom labelVector set_label

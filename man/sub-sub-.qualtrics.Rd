@@ -7,9 +7,11 @@
 \method{[[}{qualtrics}(x, ..., exact = TRUE)
 }
 \arguments{
+\item{x}{a data frame of class \code{qualtrics}}
+
 \item{...}{additional arguments used by \code{[[}}
 
-\item{data}{a data frame of class \code{qualtrics}}
+\item{exact}{set to default to \code{TRUE}, controls possible partial matching when extracting by a character vector}
 }
 \description{
 Given an object of class \code{qualtrics}, this subsetting method allows the user to subset a data frame while preserving its labels.
