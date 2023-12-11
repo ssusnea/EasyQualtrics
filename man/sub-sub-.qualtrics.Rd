@@ -14,5 +14,5 @@
 \item{exact}{set to default to \code{TRUE}, controls possible partial matching when extracting by a character vector}
 }
 \description{
-Given an object of class \code{qualtrics}, this subsetting method allows the user to subset a data frame while preserving its labels.
+Given an object of class \code{qualtrics}, this \code{\link[base:Extract]{base::Extract}} subsetting method allows the user to subset a data frame while preserving its labels.
 }

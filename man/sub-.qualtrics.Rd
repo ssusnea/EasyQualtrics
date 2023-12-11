@@ -18,7 +18,7 @@
 \item{drop}{set to default to \code{FALSE}, preserves the data frame's dimensions}
 }
 \description{
-Given an object of class \code{qualtrics}, this subsetting method allows the user to subset a data frame while preserving its labels.
+Given an object of class \code{qualtrics}, this \code{\link[base:Extract]{base::Extract}} subsetting method allows the user to subset a data frame while preserving its labels.
 }
 \note{
 This subsetting method does not allow for dimensions to be dropped. Thus, to
