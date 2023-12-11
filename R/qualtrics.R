@@ -55,7 +55,7 @@ validate_qualtrics <- function(data) {
 
 #' Subset a `qualtrics` data frame
 #'
-#' Given an object of class `qualtrics`, this subsetting method allows the user to subset a data frame while preserving its labels.
+#' Given an object of class `qualtrics`, this [`base::Extract`] subsetting method allows the user to subset a data frame while preserving its labels.
 #'
 #' @rawNamespace S3method(`[`,qualtrics)
 #' @param x a data frame of class `qualtrics`
@@ -92,7 +92,7 @@ validate_qualtrics <- function(data) {
 #' Subset a `qualtrics` data frame
 #'
 #' @rawNamespace S3method(`[[`,qualtrics)
-#' @description Given an object of class `qualtrics`, this subsetting method allows the user to subset a data frame while preserving its labels.
+#' @description Given an object of class `qualtrics`, this [`base::Extract`] subsetting method allows the user to subset a data frame while preserving its labels.
 #'
 #' @param x a data frame of class `qualtrics`
 #' @param ... additional arguments used by `[[`
@@ -120,7 +120,7 @@ validate_qualtrics <- function(data) {
 
 #' Subset a `qualtrics` data frame
 #'
-#' Given an object of class `qualtrics`, this subsetting method allows the user to subset a data frame while preserving its labels.
+#' Given an object of class `qualtrics`, this [`base::Extract`] subsetting method allows the user to subset a data frame while preserving its labels.
 #'
 #' @rawNamespace S3method(`$`,qualtrics)
 #' @param x a data frame of class `qualtrics`
