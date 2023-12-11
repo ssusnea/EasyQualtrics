@@ -22,7 +22,7 @@ test_that("`[` with only j",
 
 test_that("`[` with i and j",
           {
-            expect_no_condition(qualtrics_example[1,1])
+            expect_equal(length(qualtrics_example[1,1]), 1)
           })
 
 test_that("`[` with name",
