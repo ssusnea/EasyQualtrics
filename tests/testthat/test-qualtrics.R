@@ -12,35 +12,35 @@ test_that("`qualtrics` objects have class `qualtrics`",
 
 test_that("`[` with only i",
           {
-            expect_no_condition(qualtrics_example[1,])
+            expect_equal(length(qualtrics_example[1:2,]), 2)
           })
 
 test_that("`[` with only j",
           {
-            expect_no_condition(qualtrics_example[,1])
+            expect_equal(length(qualtrics_example[,1:2]), 2)
           })
 
 test_that("`[` with i and j",
           {
-            expect_equal(length(qualtrics_example[1,1]), 1)
+            expect_equal(length(qualtrics_example[1:2,1:2]), 2)
           })
 
 test_that("`[` with name",
           {
-            expect_no_condition(qualtrics_example["start_date"])
+            expect_equal(length(qualtrics_example["start_date"]), 1)
           })
 
 test_that("`[[` with i",
           {
-            expect_no_condition(qualtrics_example[[1]])
+            expect_equal(length(qualtrics_example[[1]]), 100)
           })
 
 test_that("`[[` with name",
           {
-            expect_no_condition(qualtrics_example[["start_date"]])
+            expect_equal(length(qualtrics_example[["start_date"]]), 100)
           })
 
-test_that("`&` with name",
+test_that("`$` with name",
           {
-            expect_no_condition(qualtrics_example$start_date)
+            expect_equal(length(qualtrics_example$start_date), 100)
           })
