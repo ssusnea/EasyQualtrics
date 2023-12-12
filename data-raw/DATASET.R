@@ -6,4 +6,6 @@ file_path <- fs::path_package("extdata", "qualtrics_ex_data.csv", package = "Eas
 
 qualtrics_example <- read_qualtrics(file_path)
 
+qualtrics_example$education <- textclean::replace_curly_quote(qualtrics_example$education)
+
 usethis::use_data(qualtrics_example, overwrite = TRUE)
