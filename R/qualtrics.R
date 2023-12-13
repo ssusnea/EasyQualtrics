@@ -4,6 +4,7 @@
 #'
 #' @param data A data set exported from Qualtrics
 #'
+#'
 #' @return An object of class `qualtrics` and class `data.frame`
 #'
 #' @export
