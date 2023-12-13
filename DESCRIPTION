@@ -19,9 +19,9 @@ Imports:
     labelVector,
     purrr,
     stringr
-    ggplot2,
-    tidyverse
 Suggests: 
+    dplyr,
+    ggplot2,
     knitr,
     rmarkdown,
     fs,
