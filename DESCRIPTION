@@ -19,12 +19,12 @@ Imports:
     labelVector,
     purrr,
     stringr
+    ggplot2,
+    tidyverse
 Suggests: 
     knitr,
     rmarkdown,
     fs,
-    ggplot2,
-    tidyverse,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
