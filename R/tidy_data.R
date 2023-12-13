@@ -6,6 +6,8 @@
 #' @param path File path to csv being imported
 #' @param heuristics Logical to determine if function should try identify and class likert questions
 #'
+#' @usage read_qualtrics(path, heuristics = TRUE)
+#'
 #' @note
 #' During importation, the question text is saved as a label for each column.
 #' To access this label use [`labelVector::get_label()`].
