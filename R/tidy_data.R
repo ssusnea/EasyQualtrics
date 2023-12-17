@@ -1,6 +1,5 @@
 #' @title Imports and clean Qualtrics csv data
 #'
-#'
 #' @description
 #' This function reads a csv file according to the standard Qualtric format.
 #'
@@ -8,6 +7,11 @@
 #' @param heuristics Logical to determine if function should try identify and class likert questions
 #'
 #' @usage read_qualtrics(path, heuristics = TRUE)
+#'
+#' @examples
+#' file_path <- fs::path_package("extdata", "qualtrics_ex_data.csv", package = "EasyQualtrics")
+#' mydata <- read_qualtrics(file_path)
+#'
 #'
 #' @note
 #' During importation, the question text is saved as a label for each column.
