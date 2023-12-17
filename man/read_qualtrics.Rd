@@ -18,3 +18,9 @@ This function reads a csv file according to the standard Qualtric format.
 During importation, the question text is saved as a label for each column.
 To access this label use \code{\link[labelVector:get_label]{labelVector::get_label()}}.
 }
+\examples{
+file_path <- fs::path_package("extdata", "qualtrics_ex_data.csv", package = "EasyQualtrics")
+mydata <- read_qualtrics(file_path)
+
+
+}
