@@ -1,5 +1,6 @@
 #' @title Imports and clean Qualtrics csv data
 #'
+#'
 #' @description
 #' This function reads a csv file according to the standard Qualtric format.
 #'
